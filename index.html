@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="store">
 <head>
     <meta charset="UTF-8">
     <title>Hello Angular</title>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
-<body>
+<body ng-controller="StoreController as store">
+
+<div ng-repeat="product in store.product">
+
+    <h1>{{product.name}}</h1>
+    <h2>${{product.price}}</h2>
+    <p>{{product.description}}</p>
+
+    <button ng-show="store.product.canPurchase">Add to Card</button>
+</div>
+
+<script src="bower_components/angular/angular.min.js"></script>
+
+<script>
+
+    (function () {
+
+        var gem = [{
+                    name: "Chery",
+                    price: 3.45,
+                    description: "very sweet and delicious",
+                    canPurchase: true,
+                    soldOut: false
+                }, {
+
+                    name: "Potato",
+                    price: 10.45,
+                    description: "so ugly",
+                    canPurchase: true,
+                    soldOut: false
+
+
+                }]
+                ;
+
+        var app = angular.module('store', []);
+
+
+        app.controller('StoreController', function () {
+            this.product = gem;
+        });
+
+
+    })();
+
+
+</script>
 
 </body>
 </html>
